@@ -1,4 +1,4 @@
-# feishu-codex-bridge
+# lark-to-codex
 
 A lightweight bot that bridges Feishu / Lark messenger with your local [Codex CLI](https://developers.openai.com/codex/cli). Talk to Codex from chat — send messages, images, files, and slash commands, and get streaming responses in real time.
 
@@ -11,8 +11,8 @@ A lightweight bot that bridges Feishu / Lark messenger with your local [Codex CL
 **Prerequisites:** Node.js >= 20, Codex CLI installed and logged in.
 
 ```bash
-npm i -g feishu-codex-bridge
-feishu-codex-bridge run
+npm i -g lark-to-codex
+lark-to-codex run
 ```
 
 First run detects no app is configured and launches a **QR-code wizard** — scan it with the Feishu/Lark app to create or bind a PersonalAgent app. Credentials are saved automatically to `~/.lark-channel/config.json`.
@@ -43,14 +43,14 @@ That's it. DM the bot or `@bot` in a group and start talking.
 
 | Command | Effect |
 |---|---|
-| `feishu-codex-bridge run [-c <config>]` | Run the bot in the foreground |
-| `feishu-codex-bridge start` | Register as an OS daemon (launchd / systemd / Task Scheduler) and start |
-| `feishu-codex-bridge stop` | Stop the daemon |
-| `feishu-codex-bridge restart` | Restart the daemon |
-| `feishu-codex-bridge status` | Show daemon status |
-| `feishu-codex-bridge unregister` | Remove daemon registration and stop |
-| `feishu-codex-bridge ps` | List running bridge processes |
-| `feishu-codex-bridge kill <id\|#>` | Kill a bridge process |
+| `lark-to-codex run [-c <config>]` | Run the bot in the foreground |
+| `lark-to-codex start` | Register as an OS daemon (launchd / systemd / Task Scheduler) and start |
+| `lark-to-codex stop` | Stop the daemon |
+| `lark-to-codex restart` | Restart the daemon |
+| `lark-to-codex status` | Show daemon status |
+| `lark-to-codex unregister` | Remove daemon registration and stop |
+| `lark-to-codex ps` | List running bridge processes |
+| `lark-to-codex kill <id\|#>` | Kill a bridge process |
 
 > Daemon commands require global install (`npm i -g`). Do not use `npx` for daemon commands — the cache path gets garbage collected.
 
@@ -115,9 +115,24 @@ grep '"event":"enter"' ~/.lark-channel/logs/$(date +%Y-%m-%d).log | tail -5
 
 **Codex freezes (card stuck).** The idle watchdog (if enabled via `/config` or `/timeout`) auto-kills processes that are silent for N minutes.
 
-**How to upgrade?** `npm i -g feishu-codex-bridge@latest` then restart. If upgrading from before 0.1.11, run `feishu-codex-bridge migrate` once.
+**How to upgrade?** `npm i -g lark-to-codex@latest` then restart. If upgrading from before 0.1.11, run `lark-to-codex migrate` once.
 
 ---
+
+## Development
+
+Build and link globally for local development:
+
+```bash
+git clone https://github.com/kev1n-zhao/lark-to-codex.git
+cd lark-to-codex
+pnpm install
+pnpm link:local
+```
+
+This runs `pnpm build` (typecheck + bundle) then `npm link` to make the `lark-to-codex` command available globally from your local clone.
+
+To unlink: `npm unlink -g lark-to-codex`
 
 ## License
 

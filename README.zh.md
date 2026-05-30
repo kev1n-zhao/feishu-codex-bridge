@@ -1,4 +1,4 @@
-# feishu-codex-bridge
+# lark-to-codex
 
 把飞书 / Lark 消息和本地 [Codex CLI](https://developers.openai.com/codex/cli) 打通的轻量 bot。一条命令起服务，扫码绑应用，在飞书里和 Codex 对话、发图发文件、敲斜杠命令，实时看到流式回复。
 
@@ -11,8 +11,8 @@
 **前置条件：** Node.js >= 20，已安装并登录 Codex CLI。
 
 ```bash
-npm i -g feishu-codex-bridge
-feishu-codex-bridge run
+npm i -g lark-to-codex
+lark-to-codex run
 ```
 
 首次启动自动进入**扫码向导**——用飞书 App 扫码，创建或绑定一个 PersonalAgent 应用。凭据自动保存到 `~/.lark-channel/config.json`。
@@ -43,14 +43,14 @@ feishu-codex-bridge run
 
 | 命令 | 作用 |
 |---|---|
-| `feishu-codex-bridge run [-c <配置路径>]` | 前台启动 bot |
-| `feishu-codex-bridge start` | 注册为 OS 后台 daemon 并启动 |
-| `feishu-codex-bridge stop` | 停止 daemon |
-| `feishu-codex-bridge restart` | 重启 daemon |
-| `feishu-codex-bridge status` | 查看 daemon 状态 |
-| `feishu-codex-bridge unregister` | 取消 daemon 注册并停止 |
-| `feishu-codex-bridge ps` | 列出本机所有 bridge 进程 |
-| `feishu-codex-bridge kill <id\|#>` | 终止指定 bridge 进程 |
+| `lark-to-codex run [-c <配置路径>]` | 前台启动 bot |
+| `lark-to-codex start` | 注册为 OS 后台 daemon 并启动 |
+| `lark-to-codex stop` | 停止 daemon |
+| `lark-to-codex restart` | 重启 daemon |
+| `lark-to-codex status` | 查看 daemon 状态 |
+| `lark-to-codex unregister` | 取消 daemon 注册并停止 |
+| `lark-to-codex ps` | 列出本机所有 bridge 进程 |
+| `lark-to-codex kill <id\|#>` | 终止指定 bridge 进程 |
 
 > daemon 命令需全局安装（`npm i -g`），不要用 `npx`——缓存路径会被 GC 清理。
 
@@ -115,9 +115,24 @@ grep '"event":"enter"' ~/.lark-channel/logs/$(date +%Y-%m-%d).log | tail -5
 
 **Codex 卡住（卡片不动）。** 可通过 `/config` 或 `/timeout` 启用空闲探活，静默超时自动终止。
 
-**如何升级？** `npm i -g feishu-codex-bridge@latest` 然后重启。从 0.1.11 之前版本升级，先跑一次 `feishu-codex-bridge migrate`。
+**如何升级？** `npm i -g lark-to-codex@latest` 然后重启。从 0.1.11 之前版本升级，先跑一次 `lark-to-codex migrate`。
 
 ---
+
+## 本地开发
+
+构建并全局链接，用于本地开发调试：
+
+```bash
+git clone https://github.com/kev1n-zhao/lark-to-codex.git
+cd lark-to-codex
+pnpm install
+pnpm link:local
+```
+
+这会执行 `pnpm build`（类型检查 + 打包），然后 `npm link` 将本地克隆的 `lark-to-codex` 命令注册为全局可用。
+
+取消链接：`npm unlink -g lark-to-codex`
 
 ## 许可
 

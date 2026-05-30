@@ -20,7 +20,7 @@ import { runStart } from './commands/start';
 const program = new Command();
 
 program
-  .name('feishu-codex-bridge')
+  .name('lark-to-codex')
   .description('Bridge Feishu/Lark messenger with local Codex CLI')
   .version(pkg.version, '-v, --version');
 

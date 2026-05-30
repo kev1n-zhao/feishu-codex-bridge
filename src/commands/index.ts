@@ -551,7 +551,7 @@ async function handleReconnect(_args: string, ctx: CommandContext): Promise<void
   }
 }
 
-const DOCTOR_INSTRUCTIONS = `你是 feishu-codex-bridge 的诊断助理。下面会给你两段输入:
+const DOCTOR_INSTRUCTIONS = `你是 lark-to-codex 的诊断助理。下面会给你两段输入:
 1. 用户的故障描述
 2. 最近的运行日志(JSON line 格式,旧→新)
 

@@ -32,10 +32,10 @@ export const paths = {
 export const legacyPaths = {
   appDir: join(
     process.env.XDG_CONFIG_HOME ?? join(homedir(), '.config'),
-    'feishu-codex-bridge',
+    'lark-to-codex',
   ),
   cacheDir: join(
     process.env.XDG_CACHE_HOME ?? join(homedir(), '.cache'),
-    'feishu-codex-bridge',
+    'lark-to-codex',
   ),
 };

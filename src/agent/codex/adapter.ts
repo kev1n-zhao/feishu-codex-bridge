@@ -12,9 +12,9 @@ export interface CodexAdapterOptions {
 
 type CodexChild = ChildProcessByStdio<null, Readable, Readable>;
 
-const BRIDGE_SYSTEM_PROMPT = `# feishu-codex-bridge runtime contract
+const BRIDGE_SYSTEM_PROMPT = `# lark-to-codex runtime contract
 
-You are Codex running inside feishu-codex-bridge: a Feishu/Lark chat bridge to the local \`codex\` CLI.
+You are Codex running inside lark-to-codex: a Feishu/Lark chat bridge to the local \`codex\` CLI.
 
 ## bridge_context
 

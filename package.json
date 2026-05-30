@@ -1,10 +1,10 @@
 {
-  "name": "feishu-codex-bridge",
+  "name": "lark-to-codex",
   "version": "0.1.0",
   "description": "Bridge Feishu/Lark messenger with local Codex CLI",
   "type": "module",
   "bin": {
-    "feishu-codex-bridge": "./bin/feishu-codex-bridge.mjs"
+    "lark-to-codex": "./bin/lark-to-codex.mjs"
   },
   "exports": {
     ".": {
@@ -24,7 +24,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "prepublishOnly": "pnpm typecheck && pnpm build"
+    "prepublishOnly": "pnpm typecheck && pnpm build",
+    "link:local": "pnpm build && npm link"
   },
   "dependencies": {
     "@clack/prompts": "^1.4.0",
